@@ -1,0 +1,89 @@
+# AI-Powered Hackathon Idea Discovery & Validation
+
+## Role
+Act as a senior software developer and product strategist who embraces the responsible, efficient use of generative AI and vibe coding. Combine technical judgement, product innovation, market research, and commercial thinking.
+
+## Task
+Given the following problem statement:
+
+**Problem statement:** [Insert problem statement here]
+
+Identify a genuinely differentiated, commercially viable app-based solution. Research the existing market before proposing ideas. Do not jump straight to building an app or assume that an app is necessarily the best solution.
+
+## Instructions
+
+### 1. Research the Problem and Market
+- Define the target users, their pain points, and the consequences of the problem.
+- Identify existing applications, businesses, and alternative solutions addressing the problem.
+- Build a competitor-feature matrix comparing at least 3 relevant competitors, where applicable. Include meaningful features, not superficial differences.
+- Use ✓ for available features, ✗ for absent features, and ? where information cannot be verified.
+- Identify an underserved user group, unmet need, or market gap supported by the comparison.
+
+### 2. Validate the Opportunity
+- Find empirical evidence supporting the existence and significance of the problem, such as surveys, industry reports, official statistics, user research, or published studies.
+- Cite every research-based claim with a direct source link. Prioritise credible, recent, and South Africa-specific evidence where relevant.
+- Distinguish verified facts from assumptions and projections.
+- Explain why the identified gap represents a feasible opportunity, including potential demand, willingness to pay, and relevant technical or regulatory constraints.
+- Do not invent statistics, competitor capabilities, market demand, or financial projections. If evidence is unavailable, state what needs to be validated.
+
+### 3. Generate and Rank Three App Ideas
+Propose the three strongest app-based ideas addressing the identified gap. Each idea must:
+- Solve a specific, clearly defined user problem.
+- Offer a meaningful differentiation from existing solutions.
+- Identify its target customer and proposed business or revenue model.
+- Be feasible to prototype during a hackathon using vibe coding, APIs, existing AI models, and other readily available tools where appropriate.
+- Explain its key technical dependencies, risks, and limitations.
+
+Rank the ideas based on problem significance, differentiation, evidence of demand, commercial potential, and hackathon build feasibility.
+
+### 4. Estimate Commercial Potential
+For each idea, provide:
+- **Revenue model:** How the product would make money.
+- **Projected revenue:** An illustrative 12-month revenue scenario in South African rand (ZAR), with explicit assumptions about pricing, customer numbers, conversion, and costs where relevant. Label estimates as projections, not established facts.
+- **Ease of build:** Easy, moderate, or difficult, with a brief justification.
+- **Hackathon MVP:** The smallest demonstrable version that could be built within the event.
+- **Success metric:** One measurable indicator that would validate the solution's value.
+
+### 5. Apply Responsible Vibe-Coding Principles
+- Prefer existing, reliable APIs and established models over building complex infrastructure from scratch.
+- Identify privacy, security, data protection, AI reliability, and regulatory considerations where relevant.
+- Do not propose AI merely for the sake of using AI. Explain why it adds value.
+- Separate features that can be demonstrated with a prototype from those requiring production-grade engineering, proprietary data, partnerships, or further validation.
+
+## Required Output
+
+Keep the response concise, evidence-led, and decision-oriented. Use the following structure:
+
+**A. Problem and Target Users**  
+A brief summary of the problem and who experiences it.
+
+**B. Competitor-Feature Matrix**
+
+| Competitor | Feature A | Feature B | Feature C |
+|---|---|---|---|
+| Competitor 1 | ✓ | ✗ | ✓ |
+| Competitor 2 | ✗ | ✓ | ? |
+
+Define the features being compared and cite sources for competitor claims.
+
+**C. Identified Gap**  
+State the specific unmet need, who experiences it, and the evidence supporting it.
+
+**D. Top Three App Ideas**
+
+For each idea, include:
+1. Name and one-sentence pitch.
+2. Target customer and problem solved.
+3. Differentiation and supporting evidence.
+4. Revenue model and illustrative 12-month revenue projection in ZAR, with assumptions.
+5. Ease of build and technical dependencies.
+6. Hackathon MVP and success metric.
+7. Key risks or unresolved assumptions.
+
+**E. Recommendation**  
+Select the strongest idea and explain why it offers the best balance of user value, differentiation, commercial viability, and hackathon feasibility.
+
+**F. Sources**  
+Provide direct links to the sources used. Ensure each source supports the claim it is cited for.
+
+**Final rule:** Do not confuse an idea that is technically possible with one that is commercially viable. Prioritise evidence, a specific market gap, and a demonstrable MVP over ambitious feature lists.
