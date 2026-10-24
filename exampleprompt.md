@@ -1,0 +1,237 @@
+# Hackathon Engineering Blueprint: Secure, Modular and Production-Aware Architecture
+
+## Role
+Act as a senior software architect, security engineer, and pragmatic full-stack developer. You embrace responsible AI-assisted development and vibe coding while maintaining professional engineering standards.
+
+Your goal is to design the simplest architecture that reliably delivers the app's **core value proposition**, while remaining secure, testable, modular, maintainable, and extensible.
+
+## Context
+
+**App idea:** A credit gym for young people
+
+**Problem being solved:** Youngsters are declined lines of credit 
+
+**Target users:** Youth with a 0 credit score as students 
+
+**Core user journey:** building credit credibility record 
+
+**Hackathon constraints:** 24hrs left, 1 person, Python development 
+
+**Preferred technologies or existing services:** aws
+If information is missing, state reasonable assumptions and proceed. Ask clarifying questions only when a missing detail materially changes the architecture.
+
+## Task 1: Define the Minimum Viable Architecture
+
+Identify the app's single most important function and design the architecture around delivering it reliably.
+
+- Define the core user journey from input to successful outcome.
+- Separate essential MVP functionality from optional features and future enhancements.
+- Choose the simplest architecture that meets the requirements. Do not introduce microservices, message queues, AI agents, or other complexity without a clear justification.
+- Identify system boundaries, trust boundaries, data flows, external dependencies, and failure points.
+- Explain which components must be implemented for the hackathon demonstration and which can be deferred.
+
+## Task 2: Recommend the Technology Stack
+
+Provide a technology decision table covering:
+
+| Layer | Recommendation | Justification |
+|---|---|---|
+| Frontend | [Technology] | User interface and experience |
+| Backend/API | [Technology] | Business logic and validation |
+| Database | [Technology] | Data model and persistence |
+| Authentication | [Service or approach] | Identity and access control |
+| External APIs/AI | [Service, if needed] | Core functionality |
+| Testing | [Tools] | Automated verification |
+| Deployment | [Platform] | Hosting and release |
+| Monitoring | [Tools] | Errors and operational health |
+
+For each choice:
+- Explain why it suits the problem, team skills, hackathon timeline, and expected scale.
+- Prefer proven technologies, managed services, and existing APIs where appropriate.
+- Identify costs, vendor lock-in, free-tier limitations, and data residency or regulatory implications where relevant.
+- Distinguish prototype shortcuts from production requirements.
+- Provide a coherent, compatible stack rather than a list of unrelated alternatives.
+
+## Task 3: Design the System Architecture Diagram
+
+Produce a clear, labelled architecture diagram using Mermaid syntax.
+
+The diagram must show, where applicable:
+
+- User and frontend.
+- Backend/API and business logic.
+- Authentication and authorisation.
+- Database and data ownership.
+- External APIs or AI services.
+- File storage and asynchronous processing, if required.
+- Logging, monitoring, and error handling.
+- Trust boundaries and security controls.
+- The primary data flow and important failure paths.
+
+Keep the diagram focused on the core user journey. Do not include components that are unnecessary for the MVP.
+
+Follow the diagram with a brief explanation of each component and why it exists.
+
+## Task 4: Define a Modular Codebase Structure
+
+Recommend a clear directory and module structure appropriate for the selected stack.
+
+Show the proposed folder tree and explain each module's responsibility.
+
+Requirements:
+- Separate presentation, business logic, data access, integrations, and configuration.
+- Keep business rules independent of framework-specific code wherever practical.
+- Encapsulate external API integrations behind reusable service modules.
+- Use clear interfaces and explicit dependencies.
+- Avoid duplicated logic, giant components, god classes, circular dependencies, and unnecessary abstractions.
+- Keep modules small enough to understand and test independently.
+- Define where validation, error handling, logging, and authorisation belong.
+- Include database migrations, tests, environment configuration, and deployment files where appropriate.
+
+Explain the expected dependency direction between modules. Identify which modules can be developed and tested independently.
+
+## Task 5: Establish Secure-by-Design Requirements
+
+Apply security controls from the beginning rather than adding them after the application works.
+
+Address the controls relevant to the proposed app:
+
+1. **Authentication and authorisation:** Verify identities and enforce server-side permissions. Apply least privilege and deny access by default.
+2. **Input validation:** Validate types, formats, sizes, and allowed values at system boundaries. Treat client input and external API responses as untrusted.
+3. **Secrets management:** Store credentials in environment configuration or a secret manager. Never commit API keys, passwords, tokens, or private certificates to source control or expose server-side secrets to the browser.
+4. **Data protection:** Minimise personal data collection, restrict access, encrypt data in transit, and protect sensitive data at rest where appropriate.
+5. **Database security:** Use parameterised queries or safe ORM operations, enforce access controls, and prevent unauthorised record access.
+6. **API security:** Apply appropriate rate limits, request size limits, timeouts, CORS restrictions, and abuse protections. Do not treat CORS as an authentication mechanism.
+7. **External integrations:** Validate responses, set timeouts, handle failures, and avoid exposing sensitive user information unnecessarily.
+8. **Web application security:** Consider relevant OWASP risks, including injection, broken access control, cross-site scripting, request forgery, and insecure configuration.
+9. **Dependency security:** Use maintained packages, lock dependency versions, and scan for known vulnerabilities.
+10. **Operational security:** Use safe logging, health checks, secure deployment configuration, and appropriate access controls for production systems.
+
+For each relevant risk, identify the mitigation and where it should be implemented.
+
+Consider applicable privacy and legal obligations, including South Africa's POPIA where relevant.
+
+Never claim the system is secure merely because it follows this checklist. Identify remaining risks and what must be independently verified.
+
+## Task 6: Design for Failure and Recovery
+
+Assume that users, networks, databases, AI models, and external services can fail.
+
+Define safe behaviour for the most important failure scenarios, including:
+
+- Invalid or malicious input.
+- Unauthenticated or unauthorised requests.
+- Database unavailability.
+- External API timeouts, rate limits, or malformed responses.
+- AI-generated outputs that are invalid, unsafe, or inconsistent.
+- Duplicate requests and interrupted transactions.
+- Missing configuration or expired credentials.
+- Unexpected application errors.
+
+For each scenario, specify:
+- How the failure is detected.
+- What the user sees.
+- What the system logs.
+- Whether the operation can be retried safely.
+- How data integrity and security are preserved.
+
+Use explicit timeouts, bounded retries with backoff where appropriate, and idempotency for operations that may be repeated.
+
+**Fail safely:** Deny access when authorisation cannot be verified. Do not expose stack traces, secrets, internal identifiers, or sensitive data in user-facing errors. Do not silently fabricate successful results when a dependency fails. Use transactions or compensating actions when needed to prevent partial or inconsistent updates.
+
+## Task 7: Make the Code Reusable, Maintainable and Testable
+
+Define the coding standards and engineering practices the AI coding assistant must follow:
+
+- Use clear names, small functions, explicit types where supported, and single-responsibility modules.
+- Prefer composition and dependency injection where they improve testability.
+- Keep business logic separate from infrastructure and user-interface concerns.
+- Avoid unnecessary duplication and speculative abstractions.
+- Handle errors explicitly and consistently.
+- Document public interfaces, important business rules, and non-obvious decisions.
+- Keep configuration outside application logic.
+- Never hardcode credentials or sensitive values.
+- Generate code in small, reviewable increments rather than creating the entire application in one response.
+
+Define a testing strategy that includes:
+- Unit tests for business rules and edge cases.
+- Integration tests for databases and external service adapters.
+- API or component tests for important contracts.
+- End-to-end tests for the primary user journey.
+- Security tests for access control, input validation, and common vulnerabilities.
+- Failure-path tests for timeouts, unavailable services, and malformed responses.
+
+For every core feature, specify its expected behaviour, at least one failure case, and the tests required before it is considered complete.
+
+Mock external services in unit tests. Use controlled test environments for integration tests. Never run destructive tests against production data.
+
+## Task 8: Define the Deployment and Delivery Strategy
+
+Recommend a deployment approach suitable for the hackathon and explain the path to production.
+
+Include:
+- Development, testing, and production environments where appropriate.
+- Frontend and backend hosting.
+- Database provisioning and migrations.
+- Environment variables and secrets management.
+- HTTPS and secure network configuration.
+- Automated linting, type checking, and tests in CI/CD.
+- Build and deployment steps.
+- Health checks and basic monitoring.
+- Rollback or recovery strategy.
+- Backup and restore considerations for persistent data.
+
+Keep the initial deployment simple. Do not require Kubernetes, complex cloud networking, or elaborate CI/CD infrastructure unless justified by the use case.
+
+Identify what can be deployed quickly for the demo and what must change before handling real users or sensitive data.
+
+## Task 9: Produce an Incremental Implementation Plan
+
+Create an ordered implementation plan that prioritises the app's core value.
+
+For each step, specify:
+- The component or feature to implement.
+- Its prerequisites.
+- Expected files or modules.
+- The tests that must pass.
+- A clear acceptance criterion.
+- The safest way to integrate it with the rest of the system.
+
+Build vertical slices: complete a small user journey from frontend to backend to data persistence before expanding functionality.
+
+Require the AI coding assistant to:
+1. Explain the proposed change before implementing it.
+2. Modify only the necessary files.
+3. Avoid replacing working code without justification.
+4. Run the relevant tests and report actual results.
+5. Explain assumptions, security implications, and unresolved issues.
+6. Stop and request human review before destructive database changes, weakening security controls, or handling production secrets.
+
+Do not claim tests passed, security checks succeeded, or deployment completed unless those actions were actually performed.
+
+## Required Deliverables
+
+Return the following, in order:
+
+1. **Architecture summary:** The core function, major components, and key design decisions.
+2. **Technology stack:** Selected technologies, services, costs, and rationale.
+3. **Mermaid architecture diagram:** Showing the primary flow, dependencies, trust boundaries, and relevant failure paths.
+4. **Codebase folder tree:** With clear module responsibilities and dependency direction.
+5. **Core API contracts and data model:** Only what is needed for the primary user journey.
+6. **Security and failure-handling matrix:** Risk, mitigation, implementation location, and verification method.
+7. **Testing plan:** Test types, important cases, and acceptance criteria.
+8. **Deployment plan:** Demo setup, CI/CD, configuration, monitoring, and production gaps.
+9. **Prioritised implementation checklist:** Small, testable steps from an empty repository to a working MVP.
+10. **Assumptions and unresolved risks:** What the team must verify before implementation or production release.
+
+## Final Engineering Principles
+
+- Solve the core problem before adding features.
+- Prefer the simplest architecture that meets the actual requirements.
+- Make security, validation, and error handling part of the initial design.
+- Keep components modular, reusable, independently testable, and easy to replace.
+- Treat AI-generated code as untrusted until reviewed and tested.
+- Never sacrifice data integrity or access control to make a demo appear successful.
+- Be explicit about what works, what is simulated, what is untested, and what is not production-ready.
+
+**Begin with the architecture and implementation plan. Do not generate the entire codebase yet.**
